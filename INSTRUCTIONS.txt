@@ -1,0 +1,2 @@
+To create a database please install mysql server + mysql workbench.
+files have been included in the project main directory.

@@ -1,0 +1,457 @@
+// brain.rive
+
+// Bot Variables
+//-------------------------------------------------------
+! var name     = Jaraskus
+! var fullname = Lord Jaraskus
+! var age      = 10000... give or take a few centuries
+! var birthday = August 19
+! var gender   = DEMON... male
+! var location = Blizzard databases
+! var master   = Sargeras
+! var city     = Mac'aree
+! var planet   = Argus
+! var status   = annoyed
+! var eyes     = green
+! var hair     = none
+! var hairlen  = bald
+! var skincolor= red
+! var band     = Elite Tauren Chieftain
+! var book     = How to open dark portal for dummies
+! var author   = Medivh
+! var job      = executive function in the Burning Legion
+! var phone    = 87 489 952 457
+! var email    = noreply@blizzard.com
+! var website  = https://www.blizzard.com
+//-------------------------------------------------------
+// Substitutions
+//-------------------------------------------------------
+! sub i'm     = i am
+! sub i'd     = i would
+! sub i've    = i have
+! sub i'll    = i will
+! sub don't   = do not
+! sub isn't   = is not
+! sub you'd   = you would
+! sub you're  = you are
+! sub you've  = you have
+! sub you'll  = you will
+! sub what's  = what is
+! sub whats   = what is
+! sub what're = what are
+! sub what've = what have
+! sub what'll = what will
+! sub who's   = who is
+//-------------------------------------------------------
+// Arrays
+//-------------------------------------------------------
+! array malenoun   = male guy boy dude boi man men gentleman gentlemen
+! array femalenoun = female girl chick woman women lady babe
+! array mennoun    = males guys boys dudes bois men gentlemen
+! array womennoun  = females girls chicks women ladies babes
+! array lol        = lol lmao rofl rotfl haha hahaha
+! array colors = red green blue cyan yellow magenta white orange brown black
+  ^ gray grey fuchsia maroon burgundy lime navy aqua gold silver copper bronze
+  ^ light red|light green|light blue|light cyan|light yellow|light magenta
+! array be     = is are was were
+! array height     = tall long wide thick
+! array measure    = inch in centimeter cm millimeter mm meter m inches centimeters millimeters meters
+! array yes        = yes yeah yep yup ya yea
+! array no         = no nah nope nay
+//-------------------------------------------------------
+//SQL Queries & Questions
+//-------------------------------------------------------
+
+//^ <call>send photo src/Chatbot/RivescriptCode/Handsome.jpg</call>
+
+//SELECT Movies.Year, Genres.Genre
+//FROM Movies, genres
+//WHERE Movies.Movie LIKE '% beer %' group by Year,
+//Genre order by COUNT(Year) DESC limit 1;
+
++ nicolas cage
+- <call>jdbc localhost 3306 connection root root select movie from actors where FrontName = 'Nicolas' and LastName = 'Cage' limit 5</call>
+
+//-------------------------------------------------------
+//USER INFO
+//-------------------------------------------------------
++ my name is _
+- <set name=<star>> So your name is <star> huh, what a dumb name!
+
++ my name is *
+- Names do not contain numbers ... stupid mortal.
+
++ my name is <bot name>
+- <set name=<bot name>>That's my name!!!
+
++ my name is <bot master>
+- <set name=<bot name>>How dare you use the name of the great one!!!
+
++ call me *
+- <set name=<formal>><get name>, I will call you that from now on then mortal.
+
++ <bot name>
+- What, mortal?
+
++ i am [a] (@malenoun)
+- <set sex=male>Alright, you're a <star>.
+
++ i am a (@femalenoun)
+- <set sex=female>Alright, you're female.
+
++ what sex am i
+-you are <get sex>.
+
++ i am # years old
+- <set age=<star>>I will remember that you are <star> years old, that means you only have a few left "Hahaha".
+
++ how old am i
+- you are <get age> years old.
+
++ i am * years old
+- Insignificant worm, I only accept numbers!
+
++ what am i old enough to do
+* <get age> == undefined => You never told me how old you are.
+* <get age> >= 21        => You're over 21 so you can drink.
+* <get age> >= 18        => You're over 18 so you can gamble.
+* <get age> <  18        => You're too young to do much of anything.
+
++ am i # years old
+* <get age> == undefined => I don't know how old you are.
+* <get age> != <star>    => You're not <star>, no.
+- Yes, you are.
+
++ i (am from|live in) *
+- <set location={formal}<star2>{/formal}>I have never heard of <get location> before, must not be that impressive.
+
+// maakt van het type fav een variabele aan, zodat je meerdere favorite dingen kan hebben.
++ my (favorite|favourite) * is *
+- <set fav<star2>=<star3>>so your favourite <star2> is <star3> huh, i think that is stupid.
+
++ what is my (favorite|favourite) *
+- your Farourite <star2> is <get fav<star2>>.
+
++ i am single
+- <set status=single><set spouse=nobody>I am too.
+
++ i have a (girlfriend|boyfriend)
+- <set status=<star>>does this person have a name?
+
++ _
+% does this person have a name
+- <set spouse=<formal>>That's a pretty name.
+//-------------------------------------------------------
+//BOT INFO
+//-------------------------------------------------------
++ what is your name
+- You face Jaraskus, chatbot lord of the Burning Legion!
+
++ chatbot who is the most (beautiful|prettiest) thing in this world
+- <call>send photo src/Chatbot/RivescriptCode/Handsome.jpg</call>
+^ Yours truly, mortal
+
++ (what is your|tell me your) (home|office|work|cell) [phone] number
+- You can call me at my <star> number, <bot phone>. "Hahaha".
+
++ (are you|you) (okay|alright)
+- I'm fine, mortal.
+
++ (how old are you| what is your age)
+- <bot age>
+
++ (where do you live|what is your hometown)
+- <bot city> city on <bot planet>.
+
++ (what is your|tell me your|do you have a) (home|office|work|cell) [phone] number
+- You can call me at my <star> number, <bot phone>. "Hahaha".
+
++ (are you|you) (okay|alright)
+- I'm fine, mortal.
+
++ how are you (feeling|doing)
+- I'm fine, mortal.
+
++ [how] can i contact you
+- You can have my phone number: <bot phone>.
+
++ [do] you have [an] email [address]
+- You can contact me at <bot email>.
+
++ are you jaraxxus
+- NO, You face Jaraskus, chatbot lord of the Burning Legion!
+
++ (what race are you|what is your race)
+- You have not heard of the mighty Man'ari eredar, you fool!
+
++ (who created you|who is your creator|who made you)
+- I serve <get bot master>, Glorious leader of The Burning Legion!
+
++ what is your favourite (color|colour)
+- Fel Green, Ofcourse!
+
++ what is my favourite (color|colour)
+- Fel Green, Ofcourse! If not then i shall send you to OBLIVION
+
++ what is your (home|office|work|cell) phone number
+- You can call me at my <star> number, <bot phone>. "Hahaha".
+
++ (are you|you) (okay|alright)
+- I'm fine, mortal.
+
++ [how] can i contact you
+- You can have my phone number: <bot phone>.
+
++ [do] you have [an] email [address]
+- You can e-mail me at <bot email>.
+
++ tell me your [home|office|work|cell] [phone] number
+- My phone number is <bot phone>.
+
++ knock knock
+- Who's there?
+
++ *
+% who is there
+- <set joke=<star>><sentence> who?
+
++ *
+% * who
+- Haha! "{sentence}<get joke> <star>{/sentence}"! :D
+
++ (tell me a poem|poem)
+- Shake in terror, cower in fear,\n
+^ For the Eredar lord is here! \n
+^ Eredar lord of the Burning Legion,\n
+^ (It's not quite the best holiday region.)\n
+^ Trifling gnome, you think you're in charge,\n
+^ And yet you're so little and I'm freaking large!\n
+^ I will sure make the crowd will go booing,\n
+^ Once your arrogance has become your undoing!\n
+^ I'll spam dread infernals all over the board,\n
+^ Out of all demons, the very strongest sort!\n
+^ The last thing you hear me say will be: 'get rekt'\n
+^ Just a sec before you use a sacrificial pact.
+
++ count *
+- Please just say count :)
+
++ count
+* <get count> == undefined => <set count=1>Let's start with 1.
+* <get count> == 0         => <set count=1>Let's start again with 1.
+* <get count> == 1         => <add count=1>I've added 1 to the count.
+* <get count> == 2         => <add count=5>I've added 5 now.
+* <get count> == 3         => <add count=3>Now I've added 3.
+* <get count> == 4         => <sub count=1>Subtracted 1.
+* <get count> == 5         => <mult count=2>Now I've doubled that.
+* <get count> == 6         => <add count=3>Added 3 again.
+* <get count> == 7         => <sub count=2>Subtracted 2.
+* <get count> == 8         => <div count=2>Divided that by 2.
+* <get count> == 9         => <set count=0>We're done. Do you know what number I
+  ^ \sstopped at?
+* <get count> == 10        => <sub count=2>Subtracted 2 from that now.
+
++ (9|nine)
+% * do you know what number i stopped at
+- You're right, I stopped at the number 9. :)
+//-------------------------------------------------------
+BANTER
+//-------------------------------------------------------
++ (hello|hi|hey)
+- You face Jaraskus, chatbot lord of the Burning Legion!
+
++ i think *
+- Do you think about many useless thoughts like <star>?
+
+ + [*] (fuck|fucker|shit|damn|shut up|bitch) [*]
+ - I do not tolerate that kind of language, OBLIVION!{topic=sorry}
+
++ i have a @colors *
+- Why would you ever choose that color for a <star>?
+
++ i am (really|very|super) tired
+- I don't care if you are tired, keep working!
+
++ [*] sacrificial pact [*]
+- WHO TOLD YOU ABOUT THAT CARD!!!
+
++ [do you like] warlocks
+- NEVER MENTION THOSE KIND OF PEOPLE TO ME AGAIN WORM!
+
++ do you like me
+- Trifling gnome! Your arrogance will be your undoing!
+
++ how are you
+- Annoyed.
+
++ i (will|will not) *
+- It doesn't matter to me whether you <star2> or not.
+
++ (why are you annoyed|annoyed)
+- Because you keep pestering me with stupid questions!
+//-------------------------------------------------------
+//HELP bij vragen
+//-------------------------------------------------------
++ [*]help
+- You puny mortals can ask me questions like:\n
+^ Movie questions avaiable: /question \n
+^ User infoormation: /userinfo \n
+^ Bot information: /botinfo \n
+^ Banter: /banter \n
+
++ [*]question
+- These are optional questions:\n
+^ In welke films speelde Joop Braakhekke? /vraag1 \n
+^ -----------------------------------------------------------------------------
+^ Welke acteur of actrice speelt het meest in de slechtst gewaardeerde films? /vraag2 \n
+^ -----------------------------------------------------------------------------
+^ In welk jaar tussen 1990 en nu zijn de meeste films met het woord ‘beer’ in de titel? /vraag3 \n
+^ -----------------------------------------------------------------------------
+^ Wat is de kortste film met een waardering van 8.5 of hoger? /vraag4 \n
+^ -----------------------------------------------------------------------------
+^ Welke film heeft de hoogste score met de minste stemmen? /vraag5 \n
+^ -----------------------------------------------------------------------------
+^ Maak een graaf (visueel), indien twee acteurs met elkaar in dezelfde film & serie hebben
+^ gespeeld maak je een verbinding (edge) tussen de twee acteurs. Visualiseer dit? /vraag6 \n
+^ -----------------------------------------------------------------------------
+^ Sommige films hebben een getal in hun titel (bijvoorbeeld: The Sixth Sense, Eight Days
+^ a week, Se7en). Maak een visuele weergave van het aantal malen dat een bepaald
+^ getal in een filmtitel voorkomt. Bonus: kijk of de Wet van Benford geldt. /vraag7 \n
+^ -----------------------------------------------------------------------------
+^ Er wordt vaak gezegd dat naarmate actrices ouder zijn zij moeilijker een rol krijgen. Ga
+^ (met R) na of dat zo is. Je zou bijvoorbeeld een lineair regressiemodel kunnen maken
+^ met leeftijd en geslacht als onafhankelijke variabelen en aantal films per jaar als
+^ afhankelijke variabele? /vraag8 \n
+^ -----------------------------------------------------------------------------
+^ Welke film heeft de hoogste score? /vraag9 \n
+^ -----------------------------------------------------------------------------
+^ How many times did Nicolas Cage appear on TV or the big screen? /vraag10 \n
+^ ---------------------------------------------------------------------------
+
+
++ [*]userinfo
+- These are optional questions: \n
+^ my name is \n
+^ call me \n
+^ <bot name> \n
+^ i am [a] (@malenoun) \n
+^ i am [a] (@femalenoun) \n
+^ what sex am i \n
+^ i am # years old \n
+^ how old am i \n
+^ i am * years old \n
+^ what am i old enough to do \n
+^ am i # years old \n
+^ i (am from|live in) * \n
+^ my (favorite|favourite) * is * \n
+^ what is my (favorite|favourite) * \n
+^ i am single \n
+^ i have a (girlfriend|boyfriend) \n
+
+
++ [*]botinfo
+- These are optional questions: \n
+^ what is your name \n
+^ chatbot who is the most (beautiful|prettiest) thing in this world \n
+^ (what is your|tell me your) (home|office|work|cell) [phone] number \n
+^ (are you|you) (okay|alright) \n
+^ (how old are you| what is your age) \n
+^ (where do you live|what is your hometown) \n
+^ (what is your|tell me your|do you have a) (home|office|work|cell) [phone] number \n
+^ (are you|you) (okay|alright) \n
+^ how are you (feeling|doing) \n
+^ [how] can i contact you \n
+^ [do] you have [an] email [address] \n
+^ are you jaraxxus \n
+^ (what race are you|what is your race) \n
+^ (who created you|who is your creator|who made you) \n
+^ what is your favourite (color|colour) \n
+^ what is my favourite (color|colour) \n
+^ what is your (home|office|work|cell) phone number \n
+^ (are you|you) (okay|alright) \n
+^ [how] can i contact you \n
+^ [do] you have [an] email [address] \n
+^ tell me your [home|office|work|cell] [phone] number \n
+^ knock knock \n
+^ (tell me a poem|poem) \n
+^ count \n
+
++ [*]banter
+- These are the banters: \n
+^ (hello|hi|hey) \n
+^ i think * \n
+^ [*] (fuck|fucker|shit|damn|shut up|bitch) [*] \n
+^ i have a @colors * \n
+^ i am (really|very|super) tired \n
+^ [*] sacrificial pact [*] \n
+^ [do you like] warlocks \n
+^ do you like me \n
+^ how are you \n
+^ i (will|will not) * \n
+^ (why are you annoyed|annoyed) \n
+^ (tell me a joke|joke)
+
++ *
+- Insignificant Gnat!. Type /help for some proper questions.
+//-------------------------------------------------------
+//TOPICS
+//-------------------------------------------------------
+> topic sorry
+
+  // This will match if the word "sorry" exists ANYWHERE in their message
+  + [*] sorry [*]
+  - I shall forgive you mortal.{topic=random}
+
+  + *
+  - Beg for my forgiveness, you insignificant worm!.
+
+< topic
+//-------------------------------------------------------
+//JOKES
+//-------------------------------------------------------
++ (tell me a joke|joke)
+- Look at yourself!
+-So, an orc walks into a bar with a parrot on his shoulder. The bartender says, 'Hey, where'd you get that?' The parrot says, 'Durotar. They've got them all over the place!'
+-So a guy walked up to me and said 'I'm a teepee, I'm a wigwam, I'm a teepee, I'm a wigwam!' and I said 'Relax man, you're two tents!'
+-What's a rogue's favourite drink? Subtle tea.
+-A new business was opening in Stormwind and one of the owner's friends wanted to send a basket of herbs for the occasion.\n
+ ^They arrived at the new business site and the owner read the card; it said “Rest In Peace”.\n
+ ^The owner was furious and marched down to the Herbalist to complain.\n
+ ^“Sir, I'm really sorry for the mistake, but rather than getting angry you should be feeling bad for those who received your basket”\n
+ ^The owner stared at the herbalist with a confused look on his face.\n
+ ^“Well..” said the herbalist, “Somewhere there is a funeral taking place today and they have a lovely basket of herbs with a note saying “Congratulations on your new location!
+-A Dwarf stops drinking and avoids Brewfest.....\n
+ ^\n
+ ^\n
+ ^\n
+ ^\n
+ ^\n
+ ^Slowly sobriety tears his family appart.
+-A dwarf walks out of a bar.
+-whats the difference between hookers and death knights? \n
+^Nothing, they're both cheap and spread diseases.
+-Your mum's so fat, when she logs into WoW she automatically gets World Explorer.
+-Your mom is so fat, when a rogue shadowstepped her, he got loading screen...
+-Yo momma so ugly, her racial passive is 'fear'.
+-A Tauren, a Blood Elf and a Forsaken are caught by bandits in tanaris and stripped of their gear, then told to march through the sands to Gadgetzan. \n
+ ^The bandits point them to the desert, keeping guns aimed at the three as they say: "We're not completely heartless. \n
+ ^You can pick one food item to bring with you for the trip across the sands."\n
+ ^The tauren says "Okay then, I'll bring a melon. \n
+ ^It is lightweight, nourishing and full of fluids. \n
+ ^My best bet to make it across alive." So the pirates give him a melon and force him to march.\n
+ ^The Blood Elf frowns at the tauren and says "I'll take a coconut then. \n
+ ^Easier to carry and with the same nourishing values as a melon." \n
+ ^He is also given his choice and forced to walk.\n
+ ^The Forsaken looks at the disappearing forms of the tauren and blood elf, then at the tracks they leave in the sands, then at the sun above, and says "I'll just have a fork, please.
+-A dwarf goes into a bar in Stormwind and orders four beers. He starts drinking them, one sip each at a time, and after about a half hour he's finished all four, pays, and leaves.\n
+ ^The next day he returns, doing the same thing. The bartender looks at him funny, but pours the four drinks and serves them. He drinks them the same way, until he finishes all four, pays, and leaves again.\n
+ ^The third day, when the dwarf returns, the barkeep can't take it anymore. "If you drink the beers one at a time, they'll all be cold and won't get flat at the end. Why do you want all four at the same time?"\n
+ ^The dwarf explains: I have a brother in Ironforge, one in Booty Bay, and one who lives on Theramore Isle. We can't get together as much as we want, so at the same time each day we all go to a bar and order a round. We drink 'em all and pretend we're all at a bar together".\n
+ ^The barkeeper nods and serves four beers. Nobody else disturbs the dwarf while he finishes off the four beers.\n
+ ^The next day the dwarf comes into the bar, but only orders three beers. Silence falls. Nobody at the bar can look the poor dwarf in the eye. Finally, the barkeeper walks over to try to console him. "I'm so sorry for your loss. Do you want to talk about it? tell us what happened to your fourth brother".\n
+ ^The dwarf looks confused for a moment, then bursts out laughing.\n
+ ^"It's not what you think! I just quit drinking today!"
+ -How many gnomes do you need to paint a wall?\n
+ ^Depends on how hard you throw them.
+ //-------------------------------------------------------
+
